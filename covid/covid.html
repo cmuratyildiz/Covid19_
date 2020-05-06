@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script >
+    	
+    	var myapp=angular.module("myapp",[]);
+    	myapp.controller("mycontroller",function($scope,$http){
+    			$http.get("https://coronavirus-19-api.herokuapp.com/countries?fbclid=IwAR3yPatZMS7bQkqBIkqzNZnKMBwbXOUGv_pmSM85SSJa8Iq5--mm2kO9pbs").then(function(response){
+    				$scope.data=response.data;
+    			});
+    	});
+    </script>
+   
+  </head>
+  <body ng-app="myapp" ng-controller="mycontroller">
+  	<div class="container">
+  		<div class="row justify-content-center m-5 p-8">
+		<label>Ülke Ara</label>
+  			<div ng-app="myapp" ng-controller="mycontroller"> 
+    			<input type="search" ng-model="search" class="form-control" placeholder="Ülke ara"><br>
+    		
+  			<table class="table table-bordered table-dark">
+			  <thead>
+			    <tr>
+			      <th scope="col">ÜLKE</th>
+			      <th scope="col">TOPLAM VAKA</th>
+			      <th scope="col">BUGÜNKÜ VAKA</th>
+			      <th scope="col">TOPLAM ÖLÜM</th>
+			      <th scope="col">BUGÜNKÜ ÖLÜM</th>
+			      <th scope="col">TOPLAM İYİLEŞEN</th>
+			      <th scope="col">AKTİF TAŞIYAN</th>
+			      <th scope="col">KRİTİK</th>
+			      <th scope="col">TOPLAM TEST</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr ng-repeat="Data in data | filter: search">
+			      <td>{{Data.country}}</td>
+			      <td>{{Data.cases}}</td>
+			      <td>{{Data.todayCases}}</td>
+			      <td>{{Data.deaths}}</td>
+			      <td>{{Data.todayDeaths}}</td>
+			      <td>{{Data.recovered}}</td>
+			      <td>{{Data.active}}</td>
+			      <td>{{Data.critical}}</td>
+			      <td>{{Data.totalTests}}</td>
+			    </tr>
+			  </tbody>
+			</table>
+ 			</div>
+ 		</div>
+  	</div>
+  </body>
+</html>
