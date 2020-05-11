@@ -16,13 +16,19 @@
     	});
     </script>
    
+   <style type="text/css">
+   			.search{
+   				border: 1px solid transparent;
+   				border-color: green;
+   			}
+   </style>
   </head>
   <body ng-app="myapp" ng-controller="mycontroller">
   	<div class="container">
   		<div class="row justify-content-center m-5 p-8">
 		<label>Ülke Ara</label>
   			<div ng-app="myapp" ng-controller="mycontroller"> 
-    			<input type="search" ng-model="search" class="form-control" placeholder="Ülke ara"><br>
+    			<input class="search" type="search" ng-model="search" class="form-control" placeholder="Ülke ara"><br>
     		
   			<table class="table table-bordered table-dark">
 			  <thead>
